@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Login</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    </head>
+    <body>
+        <h1>RainCast</h1>
+        <h2>Register/Login</h2>
+        <h3>Predict whether you should carry that umbrella today!</h3>
+        <form action="{{ url_for('login') }}" method="post" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            <p>{{form.username.label}} {{form.username()}}</p>
+            <p>{{form.password.label}} {{ form.password() }}</p>
+            <p>{{ form.submit() }}</p>
+        </form>
+    </body>
+</html>

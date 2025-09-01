@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='history.css') }}">
+</head>
+<body>
+    <h1>Prediction History</h1>
+    
+    <nav>
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <thead>
+            <tr>
+                <th>Pressure</th>
+                <th>Temperature</th>
+                <th>Dewpoint</th>
+                <th>Humidity</th>
+                <th>Cloud</th>
+                <th>Sunshine</th>
+                <th>Wind Direction</th>
+                <th>Wind Speed</th>
+                <th>Prediction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if history and history|length > 0 %}
+                {% for entry in history %}
+                <tr>
+                    <td>{{ entry.input_data['pressure'][0] }}</td>
+                    <td>{{ entry.input_data['temparature'][0] }}</td>
+                    <td>{{ entry.input_data['dewpoint'][0] }}</td>
+                    <td>{{ entry.input_data['humidity'][0] }}</td>
+                    <td>{{ entry.input_data['cloud'][0] }}</td>
+                    <td>{{ entry.input_data['sunshine'][0] }}</td>
+                    <td>{{ entry.input_data['winddirection'][0] }}</td>
+                    <td>{{ entry.input_data['windspeed'][0] }}</td>
+                    <td>{{ entry.predicted_output }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="9">No predictions found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    
+    <footer>© 2025 RainCast</footer>
+</body>
+</html>

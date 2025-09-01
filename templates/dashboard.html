@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rainfall Prediction Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <h1>Rainfall Prediction Dashboard</h1>
+    
+    <nav>
+        <a href="{{ url_for('history') }}">View Prediction History</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+    
+    <!-- FIXED: Add missing form tags -->
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        {{ form.pressure.label }} {{ form.pressure() }}<br>
+        {{ form.temparature.label }} {{ form.temparature() }}<br>
+        {{ form.dewpoint.label }} {{ form.dewpoint() }}<br>
+        {{ form.humidity.label }} {{ form.humidity() }}<br>
+        {{ form.cloud.label }} {{ form.cloud() }}<br>
+        {{ form.sunshine.label }} {{ form.sunshine() }}<br>
+        {{ form.winddirection.label }} {{ form.winddirection() }}<br>
+        {{ form.windspeed.label }} {{ form.windspeed() }}<br>
+        
+        {{ form.submit() }}
+    </form>
+    
+    <!-- FIXED: Check for lowercase 'yes'/'no' -->
+    {% if prediction %}
+        {% if prediction == 'yes' %}
+            <div class="prediction-result">
+                🌧️ Rain, you might want to carry an umbrella.
+            </div>
+        {% elif prediction == 'no' %}
+            <div class="prediction-result">
+                ☀️ No need to carry an umbrella.
+            </div>
+        {% else %}
+            <div class="prediction-result">
+                Prediction: {{ prediction }}
+            </div>
+        {% endif %}
+    {% endif %}
+    
+    <footer>© 2025 RainCast</footer>
+</body>
+</html>
