@@ -7,12 +7,21 @@ from flask_login import UserMixin, LoginManager, login_user, logout_user, curren
 from flask_sqlalchemy import SQLAlchemy
 import joblib
 import pandas as pd
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret_shush'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/rainfall.db'
+db_path = os.path.join(app.instance_path, 'rainfall.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+db = SQLAlchemy(app)
+
+# Ensure instance directory exists
+os.makedirs(app.instance_path, exist_ok=True)
+
+with app.app_context():
+    db.create_all()
+    print(f"Database created at: {db_path}")
 db = SQLAlchemy(app)
 
 model = joblib.load('model.pkl')
