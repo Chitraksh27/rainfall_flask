@@ -10,7 +10,7 @@ import pandas as pd
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_shush'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///rainfall.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/rainfall.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
