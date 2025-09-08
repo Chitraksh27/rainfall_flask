@@ -11,6 +11,7 @@ import os
 
 app = Flask(__name__)
 db_path = os.path.join(app.instance_path, 'rainfall.db')
+app.config['SECRET_KEY'] = 'secretKey'
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -22,7 +23,6 @@ os.makedirs(app.instance_path, exist_ok=True)
 with app.app_context():
     db.create_all()
     print(f"Database created at: {db_path}")
-db = SQLAlchemy(app)
 
 model = joblib.load('model.pkl')
 scaler = joblib.load('scaler.pkl')
