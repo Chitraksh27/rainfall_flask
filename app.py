@@ -22,7 +22,6 @@ os.makedirs(app.instance_path, exist_ok=True)
 with app.app_context():
     db.create_all()
     print(f"Database created at: {db_path}")
-db = SQLAlchemy(app)
 
 model = joblib.load('model.pkl')
 scaler = joblib.load('scaler.pkl')
