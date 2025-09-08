@@ -151,3 +151,11 @@ footer {
     padding: 1rem;
   }
 }
+.prediction-result {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 1.2rem;
+  display: block;
+}
+
