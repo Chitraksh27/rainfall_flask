@@ -12,23 +12,22 @@
         <a href="{{ url_for('logout') }}">Logout</a>
     </nav>
     
-    <!-- FIXED: Add missing form tags -->
+    
     <form method="POST">
         {{ form.hidden_tag() }}
         
-        {{ form.pressure.label }} {{ form.pressure() }}<br>
-        {{ form.temparature.label }} {{ form.temparature() }}<br>
-        {{ form.dewpoint.label }} {{ form.dewpoint() }}<br>
-        {{ form.humidity.label }} {{ form.humidity() }}<br>
-        {{ form.cloud.label }} {{ form.cloud() }}<br>
-        {{ form.sunshine.label }} {{ form.sunshine() }}<br>
-        {{ form.winddirection.label }} {{ form.winddirection() }}<br>
-        {{ form.windspeed.label }} {{ form.windspeed() }}<br>
+        {{ form.pressure.label }} {{ form.pressure(placeholder = "Air pressure at your location in hectopascals") }}<br>
+        {{ form.temparature.label }} {{ form.temparature(placeholder = "Typical temperature during the period in °C") }}<br>
+        {{ form.dewpoint.label }} {{ form.dewpoint(placeholder = "Temperature where air becomes fully saturated") }}<br>
+        {{ form.humidity.label }} {{ form.humidity(placeholder = "Amount of moisture in air as a percentage") }}<br>
+        {{ form.cloud.label }} {{ form.cloud(placeholder = "Sky area covered by clouds as a percentage") }}<br>
+        {{ form.sunshine.label }} {{ form.sunshine(placeholder = "Total hours of sunshine in the period") }}<br>
+        {{ form.winddirection.label }} {{ form.winddirection(placeholder = "Direction wind is coming from (0-360°)") }}<br>
+        {{ form.windspeed.label }} {{ form.windspeed(placeholder = "Speed of the wind in kilometers per hour") }}<br>
         
         {{ form.submit() }}
     </form>
     
-    <!-- FIXED: Check for lowercase 'yes'/'no' -->
     {% if prediction %}
         {% if prediction == 'yes' %}
             <div class="prediction-result">
